@@ -1,0 +1,18 @@
+.output-box__header {
+  align-self: flex-start;
+  font-family: 'Gilroy';
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+  margin: 0 0 8px 0;
+  color: #575757;
+}
+
+.output-box__price {
+  font-family: 'Nekst';
+  font-size: 54px;
+  line-height: 90%;
+  font-weight: 900;
+  margin: 0;
+  color: #575757;
+}
