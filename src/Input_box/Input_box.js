@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Input_box.css";
 
 const Input_box = (props) => {
+
   const handlePriceChange = (evt) => {
     props.onChange(evt.target.value);
   };
 
-const [rangeValue, setRangeValue] = useState()
-
   const handleChangeRangeInput = (evt) => {
     props.onChangeRange(evt.target.value)
+    console.log(evt.target.value)
     // evt.target.style = `background: linear-gradient(to right, #FF9514 0%,
     //   #FF9514 ${(rangeValue) * 1.66}%, #E1E1E1 ${(rangeValue) * 1.66}%, #E1E1E1 100%)`;
   };
@@ -20,9 +20,9 @@ const [rangeValue, setRangeValue] = useState()
       <div className="input-box__all-field">
         <input
           className="input-box__input"
-          defaultValue={props.defaultValue}
+          value={props.value}
           type="number"
-          onChange={handlePriceChange}
+          onInput={handlePriceChange}
           //min={props.minInput}
           max={props.maxInput}
         ></input>
@@ -40,7 +40,7 @@ const [rangeValue, setRangeValue] = useState()
         max={props.maxRange}
         defaultValue={props.defRangeValue}
         step="1"
-        onChange={handleChangeRangeInput}
+        onInput={handleChangeRangeInput}
       ></input>
     </div>
   );

@@ -4,7 +4,6 @@ import Output_box from "../Output_box/Output_box";
 import { useEffect, useState } from "react";
 
 const Calculator = () => {
-
   const [priceAuto, setPriceAuto] = useState(3300000);
   const [onePercentOfPriceAuto, setOnePercentOfPriceAuto] = useState();
   const [initialPayment, setInitialPayment] = useState(420000);
@@ -28,14 +27,13 @@ const Calculator = () => {
 
   const handleMonthChange = (month) => {
     setMonth(month);
-    console.log(month)
   };
 
   useEffect(() => {
     setOnePercentOfPriceAuto(handleGetOnePercent);
     setInitialPaymentPercent(getPaymentPercent);
   }, [priceAuto, initialPayment]);
-  
+
   useEffect(() => {
     const initial = priceAuto * (getPaymentPercent / 100);
     const monthPay =
@@ -45,10 +43,9 @@ const Calculator = () => {
   }, [priceAuto, initialPayment, month]);
 
   useEffect(() => {
-    const priceLeasingSum = initialPayment + (month * monthlyPayment);
+    const priceLeasingSum = initialPayment + month * monthlyPayment;
     setSumOfLeasing(priceLeasingSum);
   }, [monthlyPayment]);
-
 
   return (
     <div className="calculator">
@@ -62,7 +59,6 @@ const Calculator = () => {
           classNameP="input-box__mod_text"
           onChange={handlePriceAutoChange}
           onChangeRange={handlePriceAutoChange}
-          defaultValue={priceAuto}
           value={priceAuto}
           minRange={1000000}
           maxRange={6000000}
@@ -77,12 +73,12 @@ const Calculator = () => {
           classNameDiv="input-box__mod"
           classNameP="input-box__mod_text-percent"
           onChange={handleInitialPaymentChange}
-          //onChangeRange={handleInitialPaymentChange}
-          defaultValue={initialPayment}
+          onChangeRange={handleInitialPaymentChange}
+          value={initialPayment}
           minRange={10}
           maxRange={60}
-          minInput={''}
-          maxInput={''}
+          minInput={""}
+          maxInput={""}
           defRangeValue={initialPaymentPercent}
         />
         <Input_box
@@ -93,19 +89,22 @@ const Calculator = () => {
           maxRange={60}
           onChange={handleMonthChange}
           onChangeRange={handleMonthChange}
-          defaultValue={month}
+          value={month}
           minInput={1}
           maxInput={60}
           defRangeValue={month}
         />
-        <Output_box
-          title="Сумма договора лизинга"
-          price={(Math.round(sumOfLeasing)).toLocaleString('ru')}
-        />
-        <Output_box
-          title="Ежемесячный платеж от"
-          price={(Math.round(monthlyPayment)).toLocaleString('ru')}
-        />
+        
+          <Output_box
+            title="Сумма договора лизинга"
+            price={Math.round(sumOfLeasing).toLocaleString()}
+          />
+          <Output_box
+            title="Ежемесячный платеж от"
+            price={Math.round(monthlyPayment).toLocaleString()}
+          />
+        
+
         <button className="calculator__button">Оставить заявку</button>
       </div>
     </div>
