@@ -59,7 +59,7 @@ const Calculator = () => {
       <h1 className="calculator__header">
         Рассчитайте стоимость автомобиля в лизинг
       </h1>
-      <form className="calculator__container" onSubmit={handleSubmitForm}>
+      <form className="calculator__container">
         <InputBox
           title="Стоимость автомобиля"
           text="₽"
