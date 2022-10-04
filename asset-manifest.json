@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a7c0e389.css",
-    "main.js": "/static/js/main.27d6000e.js",
+    "main.css": "/static/css/main.72784913.css",
+    "main.js": "/static/js/main.e2a72466.js",
     "static/js/787.56a06fe5.chunk.js": "/static/js/787.56a06fe5.chunk.js",
     "static/media/Nekst-Bold.eot": "/static/media/Nekst-Bold.753a7c4c084c718c0281.eot",
     "static/media/Nekst-Bold.ttf": "/static/media/Nekst-Bold.cab6338caaec418b8de9.ttf",
@@ -112,12 +112,12 @@
     "static/media/Gilroy-Regular.woff2": "/static/media/Gilroy-Regular.f6c9931fabe5a6eb3307.woff2",
     "static/media/Gilroy-Extrabold.woff2": "/static/media/Gilroy-Extrabold.5c5942d3e4d9a9645df4.woff2",
     "index.html": "/index.html",
-    "main.a7c0e389.css.map": "/static/css/main.a7c0e389.css.map",
-    "main.27d6000e.js.map": "/static/js/main.27d6000e.js.map",
+    "main.72784913.css.map": "/static/css/main.72784913.css.map",
+    "main.e2a72466.js.map": "/static/js/main.e2a72466.js.map",
     "787.56a06fe5.chunk.js.map": "/static/js/787.56a06fe5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a7c0e389.css",
-    "static/js/main.27d6000e.js"
+    "static/css/main.72784913.css",
+    "static/js/main.e2a72466.js"
   ]
 }
