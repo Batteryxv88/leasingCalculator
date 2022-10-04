@@ -33,6 +33,15 @@
   margin-top: 10px;
 }
 
+.calculator__button:hover {
+  background-color: #111111;
+  transition: ease-in .2s;
+}
+
+.calculator__button:active {
+  background-color: #575757;
+}
+
 @media screen and (max-width: 1200px) {
   .calculator__container {
     grid-template-columns: 1fr;

@@ -1,21 +1,22 @@
 import "./Calculator.css";
-import Input_box from "../Input_box/Input_box";
-import Output_box from "../Output_box/Output_box";
+import InputBox from "../InputBox/InputBox";
+import OutputBox from "../OutputBox/OutputBox";
 import { useEffect, useState } from "react";
 
 const Calculator = () => {
-  const [priceAuto, setPriceAuto] = useState(3300000);
-  const [onePercentOfPriceAuto, setOnePercentOfPriceAuto] = useState();
-  const [initialPayment, setInitialPayment] = useState(420000);
+  const [priceAuto, setPriceAuto] = useState(3300000); // Стоимость авто
+  const [onePercentOfPriceAuto, setOnePercentOfPriceAuto] = useState(); // Один процент от стоимости авто
+  const [initialPayment, setInitialPayment] = useState(420000); // Первоначальный взнос
 
-  const handleGetOnePercent = priceAuto / 100;
-  const getPaymentPercent = initialPayment / handleGetOnePercent;
+  const handleGetOnePercent = priceAuto / 100; // Находим процент от стоимости авто
+  const getPaymentPercent = initialPayment / handleGetOnePercent; // Находим первоначальный взнос в процентах отстоимости авто
   const [initialPaymentPercent, setInitialPaymentPercent] =
-    useState(getPaymentPercent);
-  const [month, setMonth] = useState(60);
+    useState(getPaymentPercent); // Первоначальный взнос в процентах
+  const [month, setMonth] = useState(60); // Месяц
 
-  const [monthlyPayment, setMonthlyPayment] = useState();
-  const [sumOfLeasing, setSumOfLeasing] = useState();
+  const [monthlyPayment, setMonthlyPayment] = useState(); // Ежемесячный платеж
+  const [sumOfLeasing, setSumOfLeasing] = useState(); // Сумма лизинга
+  const initial = priceAuto * (initialPaymentPercent / 100);
 
   const handlePriceAutoChange = (priceAuto) => {
     setPriceAuto(priceAuto);
@@ -35,28 +36,44 @@ const Calculator = () => {
   }, [priceAuto, initialPayment]);
 
   useEffect(() => {
-    const initial = priceAuto * (getPaymentPercent / 100);
     const monthPay =
       (priceAuto - initial) *
       ((0.035 * Math.pow(1 + 0.035, month)) / (Math.pow(1 + 0.035, month) - 1));
     setMonthlyPayment(monthPay);
+    console.log(initial);
   }, [priceAuto, initialPayment, month]);
 
   useEffect(() => {
     const priceLeasingSum = initialPayment + month * monthlyPayment;
     setSumOfLeasing(priceLeasingSum);
-  }, [monthlyPayment]);
+    console.log(sumOfLeasing);
+    console.log(initialPayment);
+    console.log(month);
+    console.log(monthlyPayment);
+    console.log(priceAuto);
+  }, [monthlyPayment, initialPayment, priceAuto]);
+
+  const handleSubmitForm = (evt) => {
+    evt.preventDefault();
+    const data = new FormData();
+    data.append("price", priceAuto);
+    data.append("initialFee", initialPayment);
+    data.append("period", month);
+    console.log(data)
+  };
 
   return (
     <div className="calculator">
       <h1 className="calculator__header">
         Рассчитайте стоимость автомобиля в лизинг
       </h1>
-      <div className="calculator__container">
-        <Input_box
+      <form className="calculator__container" onSubmit={handleSubmitForm}>
+        <InputBox
           title="Стоимость автомобиля"
           text="₽"
           classNameP="input-box__mod_text"
+          id="price"
+          name="price"
           onChange={handlePriceAutoChange}
           onChangeRange={handlePriceAutoChange}
           value={priceAuto}
@@ -66,12 +83,14 @@ const Calculator = () => {
           maxInput={6000000}
           defRangeValue={priceAuto + 200000}
         />
-        <Input_box
+        <InputBox
           title="Первоначальный взнос"
           text="%"
           number={Math.round(initialPaymentPercent)}
           classNameDiv="input-box__mod"
           classNameP="input-box__mod_text-percent"
+          id="initialFee"
+          name="initialFee"
           onChange={handleInitialPaymentChange}
           onChangeRange={handleInitialPaymentChange}
           value={initialPayment}
@@ -81,10 +100,12 @@ const Calculator = () => {
           maxInput={""}
           defRangeValue={initialPaymentPercent}
         />
-        <Input_box
+        <InputBox
           title="Срок лизинга"
           text="мес."
           classNameP="input-box__mod_text"
+          id="period"
+          name="period"
           minRange={1}
           maxRange={60}
           onChange={handleMonthChange}
@@ -94,19 +115,18 @@ const Calculator = () => {
           maxInput={60}
           defRangeValue={month}
         />
-        
-          <Output_box
-            title="Сумма договора лизинга"
-            price={Math.round(sumOfLeasing).toLocaleString()}
-          />
-          <Output_box
-            title="Ежемесячный платеж от"
-            price={Math.round(monthlyPayment).toLocaleString()}
-          />
-        
+
+        <OutputBox
+          title="Сумма договора лизинга"
+          price={Math.round(sumOfLeasing).toLocaleString("ru")}
+        />
+        <OutputBox
+          title="Ежемесячный платеж от"
+          price={Math.round(monthlyPayment).toLocaleString("ru")}
+        />
 
         <button className="calculator__button">Оставить заявку</button>
-      </div>
+      </form>
     </div>
   );
 };

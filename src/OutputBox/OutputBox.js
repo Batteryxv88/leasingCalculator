@@ -1,6 +1,6 @@
-import "./Output_box.css";
+import "./OutputBox.css";
 
-const Output_box = (props) => {
+const OutputBox = (props) => {
   return (
     <div className="output-box">
       <p className="output-box__header">{props.title}</p>
@@ -9,4 +9,4 @@ const Output_box = (props) => {
   );
 };
 
-export default Output_box;
+export default OutputBox;
