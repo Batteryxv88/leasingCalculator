@@ -53,14 +53,6 @@ const Calculator = () => {
     console.log(priceAuto);
   }, [monthlyPayment, initialPayment, priceAuto]);
 
-  const handleSubmitForm = (evt) => {
-    evt.preventDefault();
-    const data = new FormData();
-    data.append("price", priceAuto);
-    data.append("initialFee", initialPayment);
-    data.append("period", month);
-    console.log(data)
-  };
 
   return (
     <div className="calculator">
